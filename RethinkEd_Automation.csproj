@@ -24,9 +24,11 @@
 	<None Update="appsettings.json">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</None>
-	<None Update="test_data\TeamMembers.csv">
-		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="extent_reports\" />
+    <Folder Include="test_data\" />
   </ItemGroup>
 
 </Project>

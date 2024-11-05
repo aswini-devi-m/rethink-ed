@@ -45,6 +45,17 @@ namespace RethinkEd_Automation.Tests
                     if (!invalid)
                     {
                         confirmPassword = password; // Confirm password should match the password
+                        // Write the data to the CSV file
+                        using (var writer = new StreamWriter(csvFilePath, true))
+                        {
+                            if (new FileInfo(csvFilePath).Length == 0)
+                            {
+                                // Write the header
+                                await writer.WriteLineAsync("FirstName,LastName,Email,CellPhone,Username,Password");
+                            }
+                            // Write the fake data as a new row
+                            await writer.WriteLineAsync($"{firstName},{lastName},{email},{cellPhone},{username},{password}");
+                        }
                     }
                     else
                     {
@@ -60,22 +71,6 @@ namespace RethinkEd_Automation.Tests
 
                     // Click on the Save button
                     await _addTeamMemberPage.ClickSaveButton();
-
-                    if (!invalid)
-                    {
-                        // Write the data to the CSV file
-                        using (var writer = new StreamWriter(csvFilePath, true))
-                        {
-                            if (new FileInfo(csvFilePath).Length == 0)
-                            {
-                                // Write the header
-                                await writer.WriteLineAsync("FirstName,LastName,Email,CellPhone,Username,Password");
-                            }
-
-                            // Write the fake data as a new row
-                            await writer.WriteLineAsync($"{firstName},{lastName},{email},{cellPhone},{username},{password}");
-                        }
-                    }
                 }
             }
         }

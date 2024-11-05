@@ -95,7 +95,7 @@ namespace RethinkEd_Automation.Tests
         {
             try
             {
-                test = extent.CreateTest("Test_Add_Team_Member");
+                test = extent.CreateTest("Add Team Member Test");
 
                 addTeamMemberPage = new AddTeamMemberPage(page);
                 var addTeamMember = new AddTeamMemberTests(addTeamMemberPage);
